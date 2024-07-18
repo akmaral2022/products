@@ -12,6 +12,7 @@ import { AddProductModal } from '@/components/modal/add-modal';
 import { ProductsTable } from '@/components/products-view/table';
 import { ProductsCard } from '@/components/products-view/cards';
 import { ProductModal } from '@/components/modal/more-modal'
+import { EditModal } from '@/components/modal/edit-modal'
 
 
 const ProductsPage = () => {
@@ -21,6 +22,7 @@ const ProductsPage = () => {
   const [searchValue, setSearchValue] = useState<string>('');
   const [addProductModal, setAddProductModal] = useState<boolean>(false);
   const [showModal, setShowModal] = useState<boolean>(false);
+  const [editModalVisible, setEditModalVisible] = useState<boolean>(false); // Состояние для видимости модального окна редактирования
   const [page, setPage] = useState<number>(1);
   const [totalPages, setTotalPages] = useState<number>(1);
   const [totalCount, setTotalCount] = useState<number>(0);
@@ -58,12 +60,21 @@ const ProductsPage = () => {
     }
   };
 
+  const handleEditProduct = (id: number) => {
+    const product = products.find((prod) => prod.id === id);
+    if (product) {
+      setSelectedProduct(product);
+      setEditModalVisible(true); // Открыть модальное окно редактирования
+    }
+  };
+
   const handleAddProduct = () => {
     setAddProductModal(true);
   };
 
   const handleCloseModal = () => {
     setShowModal(false);
+    setEditModalVisible(false); // Закрыть модальное окно редактирования
   };
 
   const handleDeleteProduct = async (id: number) => {
@@ -125,7 +136,7 @@ const ProductsPage = () => {
       </div>
 
       {isTableDisplay ?
-        <ProductsTable products={products} onShowMore={handleShowMore} />
+        <ProductsTable products={products} onShowMore={handleShowMore} onEdit={handleEditProduct} />
         :
         <ProductsCard products={products} onShowMore={handleShowMore} />
       }
@@ -154,7 +165,11 @@ const ProductsPage = () => {
         <AddProductModal product={selectedProduct} onClose={() => setAddProductModal(false)} />
       }
       {showModal &&
-        <ProductModal product={selectedProduct} onClose={handleCloseModal} onDelete={handleDeleteProduct} />}
+        <ProductModal product={selectedProduct} onClose={handleCloseModal} onDelete={handleDeleteProduct} />
+      }
+      {editModalVisible &&
+        <EditModal product={selectedProduct} onClose={handleCloseModal} />
+      }
     </div>
   );
 };

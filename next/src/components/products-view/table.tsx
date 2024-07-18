@@ -5,6 +5,11 @@ import deleteIcon from '@/assets/icons/Delete.svg';
 import Image from "next/image";
 
 export const ProductsTable: React.FC<DisplayTypes> = ({ products, onShowMore, onEdit }) => {
+  const handleEdit = (id: number) => {
+    if (onEdit) {
+      onEdit(id);
+    }
+  };
   return (
     <div className="flex justify-start items-start mt-[50px] w-full">
       <div className="w-full mx-auto">
@@ -35,7 +40,7 @@ export const ProductsTable: React.FC<DisplayTypes> = ({ products, onShowMore, on
                 <td className="py-4 px-6 text-sm text-gray-700">
                   <div className="flex gap-[10px]">
                     <Image src={editIcon} alt='edit' width={20} height={20}
-                      onClick={() => onEdit?.(product.id)}
+                      onClick={() => handleEdit(product.id)}
                     />
                     <Image src={deleteIcon} alt='delete' width={20} height={20}
                       onClick={() => onShowMore(product.id)}
