@@ -8,10 +8,10 @@ import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { deleteProductById, fetchProductById, fetchProducts } from '@/store/store';
 import { Products } from '@/types/products';
-import { ProductModal } from '@/components/modal/more-modal';
 import { AddProductModal } from '@/components/modal/add-modal';
 import { ProductsTable } from '@/components/products-view/table';
 import { ProductsCard } from '@/components/products-view/cards';
+import { ProductModal } from '@/components/modal/more-modal'
 
 
 const ProductsPage = () => {

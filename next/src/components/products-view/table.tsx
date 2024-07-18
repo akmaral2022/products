@@ -1,10 +1,10 @@
-import { DisplayTypes } from "@/types/products"
-import React from "react"
-import editIcon from '@/assets/icons/refresh.svg'
-import deleteIcon from '@/assets/icons/Delete.svg'
-import Image from "next/image"
+import { DisplayTypes } from "@/types/products";
+import React from "react";
+import editIcon from '@/assets/icons/refresh.svg';
+import deleteIcon from '@/assets/icons/Delete.svg';
+import Image from "next/image";
 
-export const ProductsTable: React.FC<DisplayTypes> = ({ products, onShowMore }) => {
+export const ProductsTable: React.FC<DisplayTypes> = ({ products, onShowMore, onEdit }) => {
   return (
     <div className="flex justify-start items-start mt-[50px] w-full">
       <div className="w-full mx-auto">
@@ -16,6 +16,7 @@ export const ProductsTable: React.FC<DisplayTypes> = ({ products, onShowMore }) 
               <th className="py-3 px-6 bg-[#E2E8F0] text-left text-sm font-medium text-[#0F172A] tracking-wider">Количество</th>
               <th className="py-3 px-6 bg-[#E2E8F0] text-left text-sm font-medium text-[#0F172A] tracking-wider">Производитель</th>
               <th className="py-3 px-6 bg-[#E2E8F0] text-left text-sm font-medium text-[#0F172A] tracking-wider">Цена</th>
+              <th className="py-3 px-6 bg-[#E2E8F0] text-left text-sm font-medium text-[#0F172A] tracking-wider">Действия</th>
             </tr>
           </thead>
           <tbody>
@@ -33,8 +34,10 @@ export const ProductsTable: React.FC<DisplayTypes> = ({ products, onShowMore }) 
                 <td className="py-4 px-6 text-sm text-gray-700">{product.price}</td>
                 <td className="py-4 px-6 text-sm text-gray-700">
                   <div className="flex gap-[10px]">
-                    <Image src={editIcon} alt='edit' width={20} height={20} />
-                    <Image src={deleteIcon} alt='edit' width={20} height={20}
+                    <Image src={editIcon} alt='edit' width={20} height={20}
+                      onClick={() => onEdit?.(product.id)}
+                    />
+                    <Image src={deleteIcon} alt='delete' width={20} height={20}
                       onClick={() => onShowMore(product.id)}
                     />
                   </div>
@@ -45,6 +48,5 @@ export const ProductsTable: React.FC<DisplayTypes> = ({ products, onShowMore }) 
         </table>
       </div>
     </div>
-  )
-
-}
+  );
+};

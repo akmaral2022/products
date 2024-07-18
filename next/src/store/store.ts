@@ -57,3 +57,16 @@ export const deleteProductById = async (id: number): Promise<void> => {
     throw new Error('Не удалось удалить продукт');
   }
 };
+
+export const updateProductById = async (id: number, updatedData: Partial<Products>): Promise<void> => {
+  try {
+    await axiosStore.patch(`/products/${id}`, updatedData, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+  } catch (error) {
+    console.error('Ошибка обновления товара:', error);
+    throw new Error('Не удалось обновить товар');
+  }
+};

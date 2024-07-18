@@ -3,7 +3,7 @@ export interface Products {
   name: string,
   quantity: number,
   price: string,
-  photoUrl: string,
+  photoUrl?: string,
   manufacturerId: number,
 }
 
@@ -15,5 +15,6 @@ export interface ProductModalProps {
 
 export interface DisplayTypes {
   products: Products[],
+  onEdit?: (id: number) => void,
   onShowMore: (id: number) => void,
 }
