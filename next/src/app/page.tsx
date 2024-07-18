@@ -1,4 +1,5 @@
 'use client'
+import axiosStore from '@/store/store';
 import { AuthResponse } from '@/types/auth';
 import axios from 'axios';
 import Link from 'next/link';
@@ -12,7 +13,7 @@ export default function Auth() {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const response = await axios.post<AuthResponse>('http://localhost:3002/login', {
+      const response = await axiosStore.post<AuthResponse>('/login', {
         email: emailValue,
         password: passwordValue
       });
