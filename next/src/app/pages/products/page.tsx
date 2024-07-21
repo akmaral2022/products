@@ -22,7 +22,7 @@ const ProductsPage = () => {
   const [searchValue, setSearchValue] = useState<string>('');
   const [addProductModal, setAddProductModal] = useState<boolean>(false);
   const [showModal, setShowModal] = useState<boolean>(false);
-  const [editModalVisible, setEditModalVisible] = useState<boolean>(false); // Состояние для видимости модального окна редактирования
+  const [editModalVisible, setEditModalVisible] = useState<boolean>(false);
   const [page, setPage] = useState<number>(1);
   const [totalPages, setTotalPages] = useState<number>(1);
   const [totalCount, setTotalCount] = useState<number>(0);
