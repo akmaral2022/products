@@ -15,7 +15,7 @@ import { ProductModal } from '@/components/modal/more-modal'
 import { EditModal } from '@/components/modal/edit-modal'
 
 
-const ProductsPage = () => {
+const ProductsPage: React.FC = () => {
   const [products, setProducts] = useState<Products[]>([]);
   const [selectedProduct, setSelectedProduct] = useState<Products | null>(null);
   const [isTableDisplay, setIsTableDisplay] = useState<boolean>(true);
@@ -26,7 +26,7 @@ const ProductsPage = () => {
   const [page, setPage] = useState<number>(1);
   const [totalPages, setTotalPages] = useState<number>(1);
   const [totalCount, setTotalCount] = useState<number>(0);
-  const [limit, setLimit] = useState<number>(10);
+  const [limit, setLimit] = useState<number>(8);
 
   useEffect(() => {
     getProducts();
@@ -64,7 +64,7 @@ const ProductsPage = () => {
     const product = products.find((prod) => prod.id === id);
     if (product) {
       setSelectedProduct(product);
-      setEditModalVisible(true); // Открыть модальное окно редактирования
+      setEditModalVisible(true);
     }
   };
 
@@ -74,7 +74,7 @@ const ProductsPage = () => {
 
   const handleCloseModal = () => {
     setShowModal(false);
-    setEditModalVisible(false); // Закрыть модальное окно редактирования
+    setEditModalVisible(false);
   };
 
   const handleDeleteProduct = async (id: number) => {
@@ -99,7 +99,7 @@ const ProductsPage = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center w-full">
+    <div className="flex flex-col items-center justify-center w-full min-h-screen">
       <div className='mt-[30px] flex justify-between w-full'>
         <input
           type="text"
